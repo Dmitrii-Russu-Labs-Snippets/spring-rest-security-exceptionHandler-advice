@@ -6,9 +6,7 @@ Handle Spring Security authentication and authorization exceptions with `Excepti
 
 ## Overview
 
-This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using `@RestControllerAdvice` and `@ExceptionHandler`.  
-
-Instead of customizing `AuthenticationEntryPoint` or `AccessDeniedHandler` directly in `SecurityConfig`, exceptions are intercepted and mapped to **ProblemDetail** responses in a global error handler.  
+This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using `@RestControllerAdvice` and `@ExceptionHandler`. Instead of customizing `AuthenticationEntryPoint` or `AccessDeniedHandler` directly in `SecurityConfig`, exceptions are intercepted and mapped to **ProblemDetail** responses in a global error handler.  
 
 ---
 
