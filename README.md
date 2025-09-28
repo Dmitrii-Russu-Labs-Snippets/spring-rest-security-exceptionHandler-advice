@@ -12,8 +12,7 @@ This repository demonstrates how to handle Spring Security exceptions (authentic
 
 Implementation difference vs other repos:  
 exceptions are handled centrally with `@ExceptionHandler` in `@RestControllerAdvice`,  
-not via [inline lambdas in `SecurityFilterChain`](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda), [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component),  
-or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).  
+not via [inline lambdas in `SecurityFilterChain`](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda), [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component), or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).  
 
 
 ---
