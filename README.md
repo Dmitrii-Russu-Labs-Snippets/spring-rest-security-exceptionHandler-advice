@@ -1,6 +1,6 @@
 # Spring REST Security ExceptionHandler (ControllerAdvice)
 
-Handle Spring Security authentication and authorization exceptions with `@ExceptionHandler` in `@RestControllerAdvice`. Returns **ProblemDetail (RFC 7807)** JSON responses for all security errors (**401 Unauthorized / 403 Forbidden**).  
+Handle Spring Security authentication and authorization exceptions with `ExceptionHandler` in `RestControllerAdvice`. Returns **ProblemDetail (RFC 7807)** JSON responses for all security errors (**401 Unauthorized / 403 Forbidden**).  
 
 ---
 
@@ -12,7 +12,11 @@ Instead of customizing `AuthenticationEntryPoint` or `AccessDeniedHandler` direc
 
 ---
 
-Implementation difference vs other repos: handlers are defined inline as lambdas in the `SecurityFilterChain`,  not as [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component)  or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).
+Implementation difference vs other repos:  
+exceptions are handled centrally with `@ExceptionHandler` in `@RestControllerAdvice`,  
+not via [inline lambdas in `SecurityFilterChain`](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda), [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component),  
+or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).  
+
 
 ---
 
@@ -80,6 +84,7 @@ curl -i -u jack:123 http://localhost:8080/auth/admin
 
 ## Related
 
+- [spring-rest-security-entrypointHandler-bean](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean) — handlers as Spring beans  
 - [spring-rest-security-entrypointHandler-component](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component) — handlers as separate components  
-- [spring-rest-security-entrypointHandler-bean](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean) — handlers as Spring beans
+- [spring-rest-security-entrypointHandler-lambda](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda) — handlers as inline lambdas in SecurityConfig  
 
