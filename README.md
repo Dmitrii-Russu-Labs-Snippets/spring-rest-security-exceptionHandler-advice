@@ -1,41 +1,41 @@
-# Spring REST Security EntryPoint Handler (Lambda)
+# Spring REST Security ExceptionHandler (ControllerAdvice)
 
-Custom `AuthenticationEntryPoint` and `AccessDeniedHandler` implemented as **lambdas in `SecurityConfig`**.
-Returns custom JSON for `401 Unauthorized` and `ProblemDetail` (RFC7807) for `403 Forbidden`.
+Handle Spring Security authentication and authorization exceptions with `@ExceptionHandler` in `@RestControllerAdvice`. Returns **ProblemDetail (RFC 7807)** JSON responses for all security errors (**401 Unauthorized / 403 Forbidden**).  
 
 ---
 
 ## Overview
 
-This repository demonstrates a minimal and compact way to customize Spring Security error handling using **lambdas directly in `SecurityConfig`**. Instead of creating separate component classes or beans, both `AuthenticationEntryPoint` and `AccessDeniedHandler` are implemented inline as lambda expressions.  
+This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using `@RestControllerAdvice` and `@ExceptionHandler`.  
 
-This keeps the setup very concise — ideal for demos, prototypes, or smaller projects — while still returning consistent JSON error responses:  
-- **401 Unauthorized** → custom JSON body  
-- **403 Forbidden** → `ProblemDetail` (RFC 7807) format  
+Instead of customizing `AuthenticationEntryPoint` or `AccessDeniedHandler` directly in `SecurityConfig`, exceptions are intercepted and mapped to **ProblemDetail** responses in a global error handler.  
+
+---
 
 Implementation difference vs other repos: handlers are defined inline as lambdas in the `SecurityFilterChain`,  not as [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component)  or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).
 
 ---
 
 ## Features
-- 401 Unauthorized → simple custom JSON (`status`, `error`, `message`, `timestamp`, `path`)
-- 403 Forbidden → RFC7807 `ProblemDetail` (`type`, `title`, `status`, `detail`, `instance`, `timestamp`)
-- Compact implementation using lambdas in `SecurityFilterChain` (no separate components)
-- Easy to adapt to production (inject `ObjectMapper`, integrate MDC/tracing for `traceId`)
+
+- **401 Unauthorized** → ProblemDetail with status `401`  
+- **403 Forbidden** → ProblemDetail with status `403`  
+- Centralized exception handling in `@RestControllerAdvice`  
+- Consistent error format across the application  
+- Easy to extend for custom exceptions  
 
 ---
 
 ## Example 401 response
 
-Content-Type: `application/json`
+Content-Type: `application/problem+json`
 ```json
 {
+ "type": "about:blank",
+  "title": "Unauthorized,
   "status": 401,
-  "error": "Unauthorized",
-  "message": "Authentication failed",
-  "timestamp": "2025-09-27T10:00:00Z",
-  "path": "/auth/user"
-}
+  "detail": "Authentication failed",
+  "instance": "/auth/admin"}
 ```
 
 ## Example 403 response
@@ -47,8 +47,7 @@ Content-Type: `application/problem+json`
   "title": "Forbidden",
   "status": 403,
   "detail": "Access Denied",
-  "instance": "/auth/admin",
-  "timestamp": "2025-09-27T10:01:00Z"
+  "instance": "/auth/admin"
 }
 ```
 
