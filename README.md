@@ -32,7 +32,7 @@ Content-Type: `application/problem+json`
 ```json
 {
  "type": "about:blank",
-  "title": "Unauthorized,
+  "title": "Unauthorized",
   "status": 401,
   "detail": "Authentication failed",
   "instance": "/auth/admin"}
