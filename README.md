@@ -1,6 +1,6 @@
-# Spring REST Security ExceptionHandler (ControllerAdvice)
+# Spring REST Security Exception Handling (ControllerAdvice)
 
-Handle Spring Security authentication and authorization exceptions with `ExceptionHandler` in `RestControllerAdvice`. Returns **ProblemDetail (RFC 7807)** JSON responses for all security errors (**401 Unauthorized / 403 Forbidden**).  
+Centralized handling of Spring Security authentication and authorization exceptions using @RestControllerAdvice and @ExceptionHandler. Returns **ProblemDetail (RFC 7807)** JSON responses for all security errors (**401 Unauthorized / 403 Forbidden**).  
 
 ---
 
@@ -31,7 +31,7 @@ exceptions are handled centrally with `@ExceptionHandler` in `@RestControllerAdv
 Content-Type: `application/problem+json`
 ```json
 {
- "type": "about:blank",
+  "type": "about:blank",
   "title": "Unauthorized",
   "status": 401,
   "detail": "Authentication failed",
